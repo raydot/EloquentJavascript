@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<script type="text/javascript">
+		//RIDICULOUSLY LONG WAY TO SOLVE THE PROBLEM OF AUNT EMILY'S CATS
+		//ARCHIVE IS THE ARCHIVE OF ALL OF THE PREVIOUS E-MAILS
+		//SEARCHING FOR LINES OF TEXT THAT MIGHT BEGIN
+		//died 12/31/2007: Mr. Mittens
+		//born 03/02/1999: Spot Kitty, Captain Fun, Sugarbear
+		var livingCats = {"Spot": true};
+
+		for (var mail = 0; mail < ARCHIVE.length; mail++) {
+			var paragraphs = ARCHIVE[mail].split("\n");
+			for (var i = 0; i < paragraphs.length; i++) {
+				var paragraph = paragraphs[i];
+				if(startsWith(paragraph, "born")) {
+					var names = catNames(paragraph);
+					for (var name = 0; name < names.length; name++) 
+						livingCats[names[name]] = true;
+				} else if (startsWith(paragraph, "died")) {
+					var names = catNames(paragraph);
+					for (var name = 0; name < names.length; name++)
+						delete livingCats[names[name]];
+				}
+			}
+		}
+
+		function startsWith(string, pattern) {
+			//checks to see if a string starts with a pattern
+			return string.slice(0, pattern.length) == pattern;
+		}
+
+		function catNames(paragraph) {
+			var colon = paragraph.indexOf(":");
+			return paragraph.slice(colon + 2).split(", ");
+			/* If Aunt Emily writes:
+			born 12/12/2003: Mr. Misstopholes, Boo Kitty, Happy Cat
+
+			This function will split it in to:
+			["Mr. Misstopholes", "Boo Kitty", "Happy Cat"] */
+		}
+	</script>
+</body>
+</html>

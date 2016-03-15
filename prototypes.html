@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	var blueBird = function() {
+		wings:2,
+		color:"blue",
+		direction:"north"
+
+		//now can I stick functions in here?
+	};
+
+
+	var birdOne = blueBird.create;
+	var birdTwo = blueBird.create;
+	birdTwo.direction = "west";
+
+	console.log(birdOne.direction);
+	console.log(birdTwo.direction);
+
+	blueBird.prototype.direction = "south";
+
+	console.log(birdOne.direction);
+	console.log(birdTwo.direction);
+
+	</script>
+</body>
+</html>
